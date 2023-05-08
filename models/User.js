@@ -12,17 +12,29 @@ const UserModel = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: 
+      match: /.+\@.+\..+/,
     },
     thoughts: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'Thought'
     },
     friends: {
       type: Schema.Types.ObjectId,
-      ref: 'Thought'
+      ref: 'User'
     }
-  }
+  },
+    {
+      toJSON: {
+        virtuals: true,
+      },
+      id: false,
+    }
 );
+
+UserModel.virtual('friendCount').get(function (){
+  return this.friends.length
+});
+
+const User = model('user', UserModel);
 
 module.exports = User;

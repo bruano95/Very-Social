@@ -1,8 +1,8 @@
 const { Thought, User } = require('../models');
 
 module.exports = {
-  // Get all courses
-  async getThoughts(req, res) {
+  // Get all thoughts
+  async getAllThoughts(req, res) {
     try {
       const thoughts = await Thought.find();
       res.json(thoughts);
@@ -10,8 +10,8 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Get a course
-  async getSingleThought(req, res) {
+  // Get a thought
+  async getThought(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
