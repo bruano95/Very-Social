@@ -50,7 +50,7 @@ module.exports = {
     }
   },
   // Update a thought
-  async updateCourse(req, res) {
+  async updateThought(req, res) {
     try {
       const course = await Course.findOneAndUpdate(
         { _id: req.params.courseId },
